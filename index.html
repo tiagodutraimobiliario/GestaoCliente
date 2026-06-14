@@ -698,6 +698,47 @@ td {
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
 
+/* ── IMÓVEIS ── */
+#view-imoveis { flex-direction: column; overflow: hidden; }
+.imoveis-grid {
+  flex: 1; overflow-y: auto; padding: 16px 20px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px; align-content: start;
+}
+.imovel-card {
+  background: var(--navy-mid); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px; padding: 16px; cursor: pointer; transition: border-color 0.2s;
+}
+.imovel-card:hover { border-color: rgba(201,168,76,0.3); }
+.imovel-card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
+.imovel-ref { font-size: 14px; font-weight: 600; color: var(--cream); line-height: 1.3; }
+.imovel-price { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--gold); margin-bottom: 8px; }
+.imovel-meta { font-size: 12px; color: var(--grey); line-height: 1.6; margin-bottom: 10px; }
+.imovel-contact {
+  display: flex; align-items: center; gap: 6px; font-size: 12px; color: #9CA3AF;
+  border-top: 1px solid rgba(255,255,255,0.06); padding-top: 10px; margin-top: 4px;
+}
+.imovel-contact .ico { opacity: 0.7; }
+.imoveis-empty { grid-column: 1 / -1; text-align: center; color: var(--grey); padding: 40px; font-size: 14px; }
+
+/* Imóveis associados (dentro dos modais de contacto) */
+.modal-imoveis-block { margin-bottom: 16px; }
+.modal-imoveis-title {
+  font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--grey); margin-bottom: 8px;
+}
+.linked-imovel {
+  display: flex; justify-content: space-between; align-items: center; gap: 10px;
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px; padding: 10px 12px; margin-bottom: 6px; cursor: pointer;
+  transition: border-color 0.2s;
+}
+.linked-imovel:hover { border-color: rgba(201,168,76,0.4); }
+.li-ref { font-size: 13px; font-weight: 600; color: var(--cream); }
+.li-sub { font-size: 11px; color: var(--grey); margin-top: 2px; }
+.li-right { text-align: right; flex-shrink: 0; }
+.li-price { font-size: 12px; color: var(--gold); font-weight: 600; margin-top: 4px; }
+
 /* ── LOADING SCREEN ── */
 #loading-screen {
   position: fixed; inset: 0; z-index: 500;
@@ -728,6 +769,92 @@ td {
 /* ── BOTTOM NAV (mobile) ── */
 .bottom-nav { display: none; }
 .call-mobile-toggle { display: none; }
+
+/* ════════════════════════════════
+   PROFESSIONAL POLISH (ui-ux-pro-max)
+   Refinamento de superfícies, contraste,
+   elevação, foco e tipografia.
+════════════════════════════════ */
+:root {
+  --navy: #0C1A28;
+  --navy-mid: #16283B;
+  --surface: #1B2E44;
+  --surface-2: #21374F;
+  --grey: #8A97A8;          /* contraste melhorado p/ texto secundário */
+  --muted: #9AA7B8;
+  --line: rgba(255,255,255,0.09);
+  --line-strong: rgba(255,255,255,0.16);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.30);
+  --shadow-md: 0 8px 22px rgba(0,0,0,0.32);
+  --shadow-lg: 0 24px 60px rgba(0,0,0,0.50);
+  --r-sm: 8px; --r-md: 12px; --r-lg: 16px;
+}
+
+* { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body {
+  text-rendering: optimizeLegibility;
+  background:
+    radial-gradient(1100px 520px at 100% -8%, rgba(201,168,76,0.06), transparent 62%),
+    linear-gradient(180deg, #0F1E2E 0%, var(--navy) 55%);
+}
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 5px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* Header com leve profundidade */
+nav { background: linear-gradient(180deg, #17293C, #122031); box-shadow: var(--shadow-sm); }
+
+/* Superfícies elevadas e consistentes */
+.kpi-card, .imovel-card, .followup-card, .partner-item,
+.dash-panel, .script-card, .close-card, .modal {
+  background: var(--surface);
+  border-color: var(--line);
+  box-shadow: var(--shadow-sm);
+}
+.buyer-card { background: var(--surface); border-color: var(--line); box-shadow: var(--shadow-sm); }
+
+/* Elevação no hover */
+.kpi-card:hover, .imovel-card:hover, .followup-card:hover, .buyer-card:hover {
+  box-shadow: var(--shadow-md); border-color: var(--line-strong);
+}
+.imovel-card:hover, .buyer-card:hover { transform: translateY(-2px); }
+
+/* Modais com elevação clara */
+.modal { box-shadow: var(--shadow-lg); border: 1px solid var(--line-strong); border-radius: var(--r-lg); }
+
+/* Inputs maiores e foco evidente (acessibilidade) */
+.field input, .field select, .field textarea, .search-box,
+#modal-tipo-cliente, .modal-notes textarea, #im-contacto {
+  border-radius: var(--r-sm); border-color: var(--line); background: rgba(0,0,0,0.22);
+}
+.field input:focus, .field select:focus, .field textarea:focus, .search-box:focus,
+#modal-tipo-cliente:focus, .modal-notes textarea:focus, #im-contacto:focus {
+  border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,168,76,0.16); background: rgba(0,0,0,0.32);
+}
+
+/* Botões: CTA primário com peso, estados claros */
+.btn-primary, .modal-save-btn {
+  border-radius: var(--r-sm); box-shadow: 0 3px 12px rgba(201,168,76,0.22);
+  transition: transform 0.12s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+.btn-primary:hover, .modal-save-btn:hover { box-shadow: 0 6px 18px rgba(201,168,76,0.30); }
+.btn-primary:active, .modal-save-btn:active { transform: translateY(1px); }
+.filter-btn, .action-btn, .status-change-btn, .outcome-btn { border-radius: var(--r-sm); transition: all 0.18s ease; }
+
+/* Pills e tags um pouco mais legíveis */
+.status-pill { padding: 4px 11px; font-weight: 600; letter-spacing: 0.01em; }
+
+/* Tabela: cabeçalhos com melhor contraste */
+th { color: var(--muted); }
+tbody tr { transition: background 0.15s ease; }
+
+/* Bottom nav com separação visual */
+.bottom-nav { box-shadow: 0 -6px 20px rgba(0,0,0,0.38); }
+
+/* Tipografia: títulos mais nítidos */
+.nav-title, .modal-name, .dash-head h1, .phase-intro h2 { letter-spacing: 0.005em; }
+.panel-label, .dash-panel-title, .script-card-label { letter-spacing: 0.12em; }
 
 /* ════════════════════════════════
    MOBILE (≤640px)
@@ -853,6 +980,7 @@ td {
     <div class="nav-tab" data-view="chamada" onclick="switchView('chamada')">📞 Nova Chamada</div>
     <div class="nav-tab" data-view="contactos" onclick="switchView('contactos')">🗂 Contactos <span class="badge-count" id="badge-contactos">0</span></div>
     <div class="nav-tab" data-view="compradores" onclick="switchView('compradores')">🤝 Compradores <span class="badge-count" id="badge-compradores">0</span></div>
+    <div class="nav-tab" data-view="imoveis" onclick="switchView('imoveis')">🏘 Imóveis <span class="badge-count" id="badge-imoveis">0</span></div>
     <div class="nav-tab" data-view="interm" onclick="switchView('interm')">💳 Intermediação <span class="badge-count" id="badge-interm">0</span></div>
     <div class="nav-tab" data-view="followups" onclick="switchView('followups')">⏰ Follow-ups <span class="badge-count" id="badge-followups">0</span></div>
   </div>
@@ -1156,6 +1284,7 @@ td {
 <div class="view" id="view-contactos">
   <div class="contacts-toolbar">
     <input class="search-box" type="text" placeholder="🔍  Pesquisar nome ou zona..." oninput="renderContacts()" id="search-input">
+    <button class="btn-primary" onclick="openNewContact()">＋ Novo Contacto</button>
     <button class="filter-btn active" onclick="setFilter('todos', this)">Todos</button>
     <button class="filter-btn" onclick="setFilter('vendedor', this)">🔴 Vendedor</button>
     <button class="filter-btn" onclick="setFilter('comprador', this)">🔵 Comprador</button>
@@ -1179,6 +1308,16 @@ td {
     <span class="buyers-count" id="buyers-count"></span>
   </div>
   <div class="kanban" id="kanban"></div>
+</div>
+
+<!-- ════ VIEW: IMÓVEIS ════ -->
+<div class="view" id="view-imoveis">
+  <div class="buyers-toolbar">
+    <input class="search-box" type="text" placeholder="🔍  Pesquisar ref., zona ou contacto..." oninput="renderImoveis()" id="imovel-search">
+    <button class="btn-primary" onclick="openImovelModal()">＋ Novo Imóvel</button>
+    <span class="buyers-count" id="imoveis-count"></span>
+  </div>
+  <div class="imoveis-grid" id="imoveis-grid"></div>
 </div>
 
 <!-- ════ VIEW: INTERMEDIAÇÃO DE CRÉDITO ════ -->
@@ -1236,8 +1375,9 @@ td {
 <nav class="bottom-nav">
   <button class="bn-item active" data-view="dashboard" onclick="switchView('dashboard')"><span class="bn-icon">📊</span><span class="bn-label">Início</span></button>
   <button class="bn-item" data-view="chamada" onclick="switchView('chamada')"><span class="bn-icon">📞</span><span class="bn-label">Chamada</span></button>
-  <button class="bn-item" data-view="contactos" onclick="switchView('contactos')"><span class="bn-icon">🗂</span><span class="bn-label">FSBOs</span><span class="bn-badge" id="bn-badge-contactos"></span></button>
+  <button class="bn-item" data-view="contactos" onclick="switchView('contactos')"><span class="bn-icon">🗂</span><span class="bn-label">Contactos</span><span class="bn-badge" id="bn-badge-contactos"></span></button>
   <button class="bn-item" data-view="compradores" onclick="switchView('compradores')"><span class="bn-icon">🏠</span><span class="bn-label">Compr.</span><span class="bn-badge" id="bn-badge-compradores"></span></button>
+  <button class="bn-item" data-view="imoveis" onclick="switchView('imoveis')"><span class="bn-icon">🏘</span><span class="bn-label">Imóveis</span><span class="bn-badge" id="bn-badge-imoveis"></span></button>
   <button class="bn-item" data-view="interm" onclick="switchView('interm')"><span class="bn-icon">💳</span><span class="bn-label">Crédito</span><span class="bn-badge" id="bn-badge-interm"></span></button>
   <button class="bn-item" data-view="followups" onclick="switchView('followups')"><span class="bn-icon">⏰</span><span class="bn-label">Follow</span><span class="bn-badge" id="bn-badge-followups"></span></button>
 </nav>
@@ -1272,6 +1412,7 @@ td {
       <label>Notas</label>
       <textarea id="modal-notas" placeholder="Adicionar notas..."></textarea>
     </div>
+    <div id="modal-imoveis"></div>
     <div style="margin-bottom:12px">
       <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--grey);margin-bottom:8px">Alterar Estado</div>
       <div class="modal-status-change">
@@ -1370,8 +1511,168 @@ td {
       </div>
     </div>
 
+    <div id="buyer-imoveis"></div>
+
     <button class="modal-save-btn" onclick="saveBuyer()">Guardar Comprador</button>
     <button class="modal-save-btn" id="buyer-delete-btn" onclick="deleteBuyer()" style="display:none;background:transparent;border:1px solid rgba(204,41,54,0.4);color:#f87171;margin-top:8px">Apagar Comprador</button>
+  </div>
+</div>
+
+<!-- MODAL IMÓVEL -->
+<div class="modal-overlay" id="imovel-modal-overlay" onclick="closeImovelModal(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-name" id="imovel-modal-title">Novo Imóvel</div>
+      <button class="modal-close" onclick="closeImovelModalDirect()">✕</button>
+    </div>
+
+    <div class="field">
+      <label>Referência / Título</label>
+      <input type="text" id="im-ref" placeholder="Ex: Apartamento T2 renovado, Belém">
+    </div>
+
+    <div class="field">
+      <label>Contacto associado *</label>
+      <select id="im-contacto"></select>
+      <div class="chip-hint">Obrigatório — o imóvel fica ligado a este contacto.</div>
+    </div>
+
+    <div class="form-row">
+      <div class="field">
+        <label>Tipo de Imóvel</label>
+        <select id="im-tipo">
+          <option value="">Selecionar...</option>
+          <option>Apartamento</option>
+          <option>Moradia</option>
+          <option>Loja/Comércio</option>
+          <option>Terreno</option>
+          <option>Outro</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Tipologia</label>
+        <select id="im-tipologia">
+          <option value="">N/A</option>
+          <option>T0</option><option>T1</option><option>T2</option>
+          <option>T3</option><option>T4</option><option>T5+</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Zona / Morada</label>
+      <input type="text" id="im-zona" placeholder="Ex: Rua X, Belém">
+    </div>
+
+    <div class="form-row">
+      <div class="field">
+        <label>Preço (€)</label>
+        <input type="text" id="im-preco" placeholder="Ex: 350.000">
+      </div>
+      <div class="field">
+        <label>Estado</label>
+        <select id="im-estado">
+          <option value="angariacao">📋 Angariação</option>
+          <option value="disponivel">🟢 Disponível</option>
+          <option value="reservado">🔵 Reservado</option>
+          <option value="vendido">⬜ Vendido</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Notas</label>
+      <textarea id="im-notas" placeholder="Características, áreas, observações..."></textarea>
+    </div>
+
+    <button class="modal-save-btn" onclick="saveImovel()">Guardar Imóvel</button>
+    <button class="modal-save-btn" id="imovel-delete-btn" onclick="deleteImovel()" style="display:none;background:transparent;border:1px solid rgba(204,41,54,0.4);color:#f87171;margin-top:8px">Apagar Imóvel</button>
+  </div>
+</div>
+
+<!-- MODAL NOVO CONTACTO -->
+<div class="modal-overlay" id="newcontact-modal-overlay" onclick="closeNewContact(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-name">Novo Contacto</div>
+      <button class="modal-close" onclick="closeNewContactDirect()">✕</button>
+    </div>
+
+    <div class="field">
+      <label>Nome</label>
+      <input type="text" id="nc-nome" placeholder="Ex: João Silva">
+    </div>
+    <div class="field">
+      <label>Telefone</label>
+      <input type="tel" id="nc-tel" placeholder="9XX XXX XXX">
+    </div>
+
+    <div class="form-row">
+      <div class="field">
+        <label>Tipo de Imóvel</label>
+        <select id="nc-tipo">
+          <option value="">Selecionar...</option>
+          <option>Apartamento T1</option>
+          <option>Apartamento T2</option>
+          <option>Apartamento T3</option>
+          <option>Apartamento T4+</option>
+          <option>Moradia</option>
+          <option>Loja/Comércio</option>
+          <option>Terreno</option>
+          <option>Outro</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Zona / Bairro</label>
+        <input type="text" id="nc-zona" placeholder="Ex: Belém, Cascais...">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="field">
+        <label>Preço Pedido (€)</label>
+        <input type="text" id="nc-preco" placeholder="Ex: 350.000">
+      </div>
+      <div class="field">
+        <label>Origem do Contacto</label>
+        <select id="nc-fonte">
+          <option value="">Selecionar...</option>
+          <option>Referência / Recomendação</option>
+          <option>Rede de contactos</option>
+          <option>Redes sociais</option>
+          <option>Antigo cliente</option>
+          <option>Angariação direta</option>
+          <option>Evento / Open house</option>
+          <option>Outro</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="field">
+        <label>Tipo de Cliente</label>
+        <select id="nc-tipocliente">
+          <option value="vendedor">🔴 Vendedor</option>
+          <option value="investidor">🟣 Investidor</option>
+          <option value="comprador">🔵 Comprador</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Estado</label>
+        <select id="nc-status">
+          <option value="ativo">🟢 Ativo</option>
+          <option value="analise">🟠 Em análise</option>
+          <option value="fechado">🔵 Fechado</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Notas</label>
+      <textarea id="nc-notas" placeholder="Contexto, requisitos, observações..."></textarea>
+    </div>
+
+    <button class="modal-save-btn" onclick="saveNewContact()">Guardar Contacto</button>
   </div>
 </div>
 
@@ -1384,10 +1685,20 @@ td {
 let contacts = [];
 let buyers = [];
 let partners = [];
+let imoveis = [];
 let activeFilter = 'todos';
 let activeModal = null;
 let activeBuyer = null;
+let activeImovel = null;
 let editingPartner = null;
+
+// Estados de imóvel
+const imovelEstados = {
+  angariacao: { label: '📋 Angariação', cls: 'pill-orange' },
+  disponivel: { label: '🟢 Disponível', cls: 'pill-green' },
+  reservado:  { label: '🔵 Reservado',  cls: 'pill-blue' },
+  vendido:    { label: '⬜ Vendido',     cls: 'pill-grey' }
+};
 
 // Tipos de cliente (tag da base de dados)
 const tipoClienteMap = {
@@ -1427,6 +1738,7 @@ function switchView(id) {
   if (id === 'dashboard') renderDashboard();
   if (id === 'contactos') renderContacts();
   if (id === 'compradores') renderBuyers();
+  if (id === 'imoveis') renderImoveis();
   if (id === 'interm') { renderPartners(); renderCredit(); }
   if (id === 'followups') renderFollowups();
 }
@@ -1506,7 +1818,10 @@ function contactStatusPill(status) {
     reuniao:  ['pill-green',  '✅ Reunião'],
     followup: ['pill-blue',   '🔵 Follow-up'],
     tentar:   ['pill-orange', '🟠 Tentar Mais Tarde'],
-    arquivo:  ['pill-grey',   '⬜ Arquivo']
+    arquivo:  ['pill-grey',   '⬜ Arquivo'],
+    ativo:    ['pill-green',  '🟢 Ativo'],
+    analise:  ['pill-orange', '🟠 Em análise'],
+    fechado:  ['pill-blue',   '🔵 Fechado']
   }[status];
   return m ? `<span class="status-pill ${m[0]}">${m[1]}</span>` : '—';
 }
@@ -1587,6 +1902,48 @@ function renderContacts() {
     }).join('')}
     </tbody>
   </table>`;
+}
+
+// Criar contacto manualmente (vendedor que não vem de FSBO)
+function openNewContact() {
+  ['nc-nome','nc-tel','nc-zona','nc-preco','nc-notas'].forEach(i => document.getElementById(i).value = '');
+  document.getElementById('nc-tipo').value = '';
+  document.getElementById('nc-fonte').value = '';
+  document.getElementById('nc-tipocliente').value = 'vendedor';
+  document.getElementById('nc-status').value = 'ativo';
+  document.getElementById('newcontact-modal-overlay').classList.add('open');
+}
+function closeNewContact(e) {
+  if (e.target === document.getElementById('newcontact-modal-overlay')) closeNewContactDirect();
+}
+function closeNewContactDirect() {
+  document.getElementById('newcontact-modal-overlay').classList.remove('open');
+}
+function saveNewContact() {
+  const nome = document.getElementById('nc-nome').value.trim();
+  const tel  = document.getElementById('nc-tel').value.trim();
+  if (!nome || !tel) { showToast('⚠️ Preenche pelo menos o nome e telefone.'); return; }
+  const contact = {
+    id: Date.now(),
+    nome, tel,
+    tipo: document.getElementById('nc-tipo').value,
+    zona: document.getElementById('nc-zona').value.trim(),
+    preco: document.getElementById('nc-preco').value.trim(),
+    fonte: document.getElementById('nc-fonte').value,
+    notas: document.getElementById('nc-notas').value.trim(),
+    tipoCliente: document.getElementById('nc-tipocliente').value,
+    status: document.getElementById('nc-status').value,
+    data: new Date().toLocaleDateString('pt-PT'),
+    dataISO: new Date().toISOString(),
+    touch: 1,
+    lastContact: new Date().toISOString()
+  };
+  contacts.unshift(contact);
+  fbSave('contacts', contact);
+  updateBadges();
+  renderContacts();
+  closeNewContactDirect();
+  showToast('✅ ' + nome + ' criado nos contactos.');
 }
 
 function deleteContact(id) {
@@ -1670,7 +2027,8 @@ function openModal(id) {
   if (!c) return;
   activeModal = id;
   document.getElementById('modal-name').textContent = c.nome;
-  document.getElementById('modal-meta').textContent = c.data + ' · ' + (c.status === 'reuniao' ? 'Reunião Marcada' : c.status === 'followup' ? 'Follow-up' : c.status === 'tentar' ? 'Tentar Mais Tarde' : 'Arquivo');
+  const statusLabels = { reuniao:'Reunião Marcada', followup:'Follow-up', tentar:'Tentar Mais Tarde', arquivo:'Arquivo', ativo:'Ativo', analise:'Em análise', fechado:'Fechado' };
+  document.getElementById('modal-meta').textContent = c.data + ' · ' + (statusLabels[c.status] || '—');
   document.getElementById('modal-tel').textContent = c.tel || '—';
   document.getElementById('modal-tipo').textContent = c.tipo || '—';
   document.getElementById('modal-zona').textContent = c.zona || '—';
@@ -1679,6 +2037,7 @@ function openModal(id) {
   document.getElementById('modal-data').textContent = c.data;
   document.getElementById('modal-notas').value = c.notas || '';
   document.getElementById('modal-tipo-cliente').value = c.tipoCliente || 'vendedor';
+  document.getElementById('modal-imoveis').innerHTML = linkedImoveisHTML('seller', c.id);
   document.getElementById('modal-overlay').classList.add('open');
 }
 
@@ -1847,6 +2206,7 @@ function openBuyerModal(id) {
       `<button class="status-change-btn" style="${b.stage===s.key?'border-color:var(--gold);color:var(--gold)':''}"
                onclick="setBuyerStage('${s.key}')">${s.label}</button>`
     ).join('');
+    document.getElementById('buyer-imoveis').innerHTML = linkedImoveisHTML('buyer', b.id);
     editExtra.style.display = 'block';
     delBtn.style.display = 'block';
   } else {
@@ -1858,6 +2218,7 @@ function openBuyerModal(id) {
     document.getElementById('b-fin').value = 'nao';
     document.getElementById('b-interm').checked = false;
     updateIntermVisibility();
+    document.getElementById('buyer-imoveis').innerHTML = '';
     editExtra.style.display = 'none';
     delBtn.style.display = 'none';
   }
@@ -2110,6 +2471,162 @@ function kbCredDrop(e, partnerId) {
   }
 }
 
+// ── IMÓVEIS ───────────────────────────
+function populateImovelContacts(selectedKey) {
+  const sel = document.getElementById('im-contacto');
+  const all = getAllContacts();
+  const opts = ['<option value="">Selecionar contacto...</option>'].concat(all.map(r => {
+    const key = r.kind + ':' + r.id;
+    const tag = (tipoClienteMap[r.tipo] || {}).label || '';
+    return `<option value="${key}">${r.nome} · ${tag}</option>`;
+  }));
+  sel.innerHTML = opts.join('');
+  if (selectedKey) sel.value = selectedKey;
+}
+
+function openImovelModal(id) {
+  activeImovel = id || null;
+  const delBtn = document.getElementById('imovel-delete-btn');
+  if (activeImovel) {
+    const im = imoveis.find(x => x.id === activeImovel);
+    if (!im) return;
+    document.getElementById('imovel-modal-title').textContent = 'Editar Imóvel';
+    document.getElementById('im-ref').value = im.ref || '';
+    populateImovelContacts(im.contactKind && im.contactId ? im.contactKind + ':' + im.contactId : '');
+    document.getElementById('im-tipo').value = im.tipo || '';
+    document.getElementById('im-tipologia').value = im.tipologia || '';
+    document.getElementById('im-zona').value = im.zona || '';
+    document.getElementById('im-preco').value = im.preco || '';
+    document.getElementById('im-estado').value = im.estado || 'angariacao';
+    document.getElementById('im-notas').value = im.notas || '';
+    delBtn.style.display = 'block';
+  } else {
+    document.getElementById('imovel-modal-title').textContent = 'Novo Imóvel';
+    ['im-ref','im-zona','im-preco','im-notas'].forEach(i => document.getElementById(i).value = '');
+    populateImovelContacts('');
+    document.getElementById('im-tipo').value = '';
+    document.getElementById('im-tipologia').value = '';
+    document.getElementById('im-estado').value = 'angariacao';
+    delBtn.style.display = 'none';
+  }
+  document.getElementById('imovel-modal-overlay').classList.add('open');
+}
+
+function closeImovelModal(e) {
+  if (e.target === document.getElementById('imovel-modal-overlay')) closeImovelModalDirect();
+}
+function closeImovelModalDirect() {
+  document.getElementById('imovel-modal-overlay').classList.remove('open');
+  activeImovel = null;
+}
+
+function saveImovel() {
+  const ref = document.getElementById('im-ref').value.trim();
+  const contactKey = document.getElementById('im-contacto').value;
+  if (!ref) { showToast('⚠️ Indica a referência/título do imóvel.'); return; }
+  if (!contactKey) { showToast('⚠️ Associa o imóvel a um contacto.'); return; }
+  const [contactKind, cid] = contactKey.split(':');
+  const contactId = Number(cid);
+  const linked = getAllContacts().find(r => r.kind === contactKind && r.id === contactId);
+
+  const data = {
+    ref, contactKind, contactId,
+    contactNome: linked ? linked.nome : '',
+    tipo: document.getElementById('im-tipo').value,
+    tipologia: document.getElementById('im-tipologia').value,
+    zona: document.getElementById('im-zona').value.trim(),
+    preco: document.getElementById('im-preco').value.trim(),
+    estado: document.getElementById('im-estado').value,
+    notas: document.getElementById('im-notas').value.trim()
+  };
+
+  if (activeImovel) {
+    const im = imoveis.find(x => x.id === activeImovel);
+    Object.assign(im, data);
+    fbSave('imoveis', im);
+    showToast('💾 Imóvel atualizado.');
+  } else {
+    const novo = { id: Date.now(), ...data, data: new Date().toLocaleDateString('pt-PT'), dataISO: new Date().toISOString() };
+    imoveis.unshift(novo);
+    fbSave('imoveis', novo);
+    showToast('✅ Imóvel adicionado.');
+  }
+  updateBadges();
+  renderImoveis();
+  closeImovelModalDirect();
+}
+
+function deleteImovel() {
+  if (!activeImovel) return;
+  if (!confirm('Apagar este imóvel?')) return;
+  const id = activeImovel;
+  imoveis = imoveis.filter(x => x.id !== id);
+  fbRemove('imoveis', id);
+  updateBadges();
+  renderImoveis();
+  closeImovelModalDirect();
+  showToast('🗑 Imóvel apagado.');
+}
+
+function renderImoveis() {
+  const grid = document.getElementById('imoveis-grid');
+  if (!grid) return;
+  const search = (document.getElementById('imovel-search')?.value || '').toLowerCase();
+  const list = imoveis.filter(im =>
+    !search || (im.ref || '').toLowerCase().includes(search)
+    || (im.zona || '').toLowerCase().includes(search)
+    || (im.contactNome || '').toLowerCase().includes(search)
+  );
+  document.getElementById('imoveis-count').textContent = imoveis.length + ' imóvel(eis)';
+  if (!list.length) {
+    grid.innerHTML = '<div class="imoveis-empty">Sem imóveis. Clica em “＋ Novo Imóvel” para registar o primeiro.</div>';
+    return;
+  }
+  grid.innerHTML = list.map(imovelCard).join('');
+}
+
+function imovelCard(im) {
+  const est = imovelEstados[im.estado] || imovelEstados.angariacao;
+  const tipoLinha = [im.tipo, im.tipologia].filter(Boolean).join(' · ') || '—';
+  const preco = im.preco ? im.preco + ' €' : 'Preço a definir';
+  return `<div class="imovel-card" onclick="openImovelModal(${im.id})">
+    <div class="imovel-card-top">
+      <div class="imovel-ref">${im.ref}</div>
+      <span class="status-pill ${est.cls}">${est.label}</span>
+    </div>
+    <div class="imovel-price">${preco}</div>
+    <div class="imovel-meta">${tipoLinha}${im.zona ? '<br>📍 ' + im.zona : ''}</div>
+    <div class="imovel-contact"><span class="ico">👤</span> ${im.contactNome || '— contacto —'}</div>
+  </div>`;
+}
+
+// Lista de imóveis ligados a um contacto, para os modais de detalhe
+function linkedImoveisHTML(kind, id) {
+  const list = imoveis.filter(im => im.contactKind === kind && im.contactId === id);
+  if (!list.length) return '';
+  const items = list.map(im => {
+    const est = imovelEstados[im.estado] || imovelEstados.angariacao;
+    const preco = im.preco ? im.preco + ' €' : '—';
+    const sub = [im.tipo, im.tipologia, im.zona].filter(Boolean).join(' · ');
+    return `<div class="linked-imovel" onclick="goToImovel(${im.id})">
+      <div><div class="li-ref">${im.ref}</div>${sub ? `<div class="li-sub">${sub}</div>` : ''}</div>
+      <div class="li-right"><span class="status-pill ${est.cls}">${est.label}</span><div class="li-price">${preco}</div></div>
+    </div>`;
+  }).join('');
+  return `<div class="modal-imoveis-block">
+    <div class="modal-imoveis-title">🏘 Imóveis associados (${list.length})</div>
+    ${items}
+  </div>`;
+}
+
+// Abrir um imóvel a partir da ficha do contacto
+function goToImovel(id) {
+  closeModalDirect();
+  closeBuyerModalDirect();
+  switchView('imoveis');
+  openImovelModal(id);
+}
+
 // ── DASHBOARD ─────────────────────────
 function parseEuro(str) {
   const n = parseInt(String(str || '').replace(/\D/g, ''), 10);
@@ -2141,17 +2658,21 @@ function renderDashboard() {
   const emInterm     = buyers.filter(b => b.stage === 'intermediacao').length;
   const semParceiro  = buyers.filter(b => b.interm && !b.partner).length;
   const ganhos       = buyers.filter(b => b.stage === 'fechado').length;
-  const pipelineVal  = activeBuyers.reduce((s, b) => s + parseEuro(b.orcMax), 0);
+  // Valor do pipeline = comissão 5% sobre compradores ativos (orç. máx.) + imóveis ainda não vendidos
+  const imoveisPipeline = imoveis.filter(im => im.estado !== 'vendido');
+  const baseVal = activeBuyers.reduce((s, b) => s + parseEuro(b.orcMax), 0)
+                + imoveisPipeline.reduce((s, im) => s + parseEuro(im.preco), 0);
+  const pipelineVal = Math.round(baseVal * 0.05);
   const encaminhados = buyers.filter(b => b.interm && b.partner).length;
 
   // ── KPI cards
   const kpis = [
-    { label: 'Vendedores (FSBO)', value: contacts.length, sub: cReuniao + ' reuniõe(s) marcada(s)', color: 'var(--red)' },
+    { label: 'Vendedores', value: contacts.length, sub: cReuniao + ' reuniõe(s) marcada(s)', color: 'var(--red)' },
     { label: 'Compradores Ativos', value: activeBuyers.length, sub: buyers.length + ' no total · ' + ganhos + ' fechado(s)', color: 'var(--green)' },
     { label: 'Follow-ups Pendentes', value: pendingFu.length, sub: overdueFu ? '⚠️ ' + overdueFu + ' em atraso' : 'Tudo em dia', subAlert: overdueFu > 0, color: 'var(--orange)' },
     { label: 'Em Intermediação', value: emInterm, sub: semParceiro + ' por encaminhar', color: '#14b8a6' },
     { label: 'Parceiros de Crédito', value: partners.length, sub: encaminhados + ' cliente(s) encaminhado(s)', color: 'var(--purple)' },
-    { label: 'Valor do Pipeline', value: pipelineVal ? '€' + pipelineVal.toLocaleString('pt-PT') : '—', sub: 'Compradores ativos (orç. máx.)', color: 'var(--gold)' }
+    { label: 'Comissão Potencial', value: pipelineVal ? '€' + pipelineVal.toLocaleString('pt-PT') : '—', sub: '5% · compradores ativos + imóveis', color: 'var(--gold)' }
   ];
 
   const kpiHtml = kpis.map(k => `<div class="kpi-card" style="--kpi-color:${k.color}">
@@ -2268,11 +2789,28 @@ function renderAll() {
   renderBuyers();
   renderPartners();
   renderCredit();
+  renderImoveis();
   renderFollowups();
   renderDashboard();
 }
 
 function onSyncError(e) { console.error('Firestore:', e); setOffline(); hideLoading(); }
+
+// Importa uma única vez os dados antigos do localStorage para o Firestore
+async function migrateLocalToFirestore() {
+  if (!window.fb || localStorage.getItem('fsbo_migrated')) return;
+  const lc = JSON.parse(localStorage.getItem('fsbo_contacts') || '[]');
+  const lb = JSON.parse(localStorage.getItem('fsbo_buyers') || '[]');
+  const lp = JSON.parse(localStorage.getItem('fsbo_partners') || '[]');
+  if (!lc.length && !lb.length && !lp.length) { localStorage.setItem('fsbo_migrated', '1'); return; }
+  try {
+    for (const c of lc) { if (!c.dataISO) c.dataISO = new Date().toISOString(); await fbSave('contacts', c); }
+    for (const b of lb) { if (!b.dataISO) b.dataISO = new Date().toISOString(); await fbSave('compradores', b); }
+    for (const p of lp) await fbSave('partners', p);
+    localStorage.setItem('fsbo_migrated', '1');
+    showToast('☁️ ' + (lc.length + lb.length) + ' registos locais importados para a cloud.');
+  } catch (e) { console.error('Migração falhou:', e); }
+}
 
 // Chamado pelo módulo Firebase assim que o SDK está pronto (window.fb definido)
 function startFirestoreSync() {
@@ -2292,6 +2830,11 @@ function startFirestoreSync() {
       partners = snap.docs.map(d => d.data());
       setSynced(); renderAll();
     }, onSyncError);
+    onSnapshot(query(collection(db, 'imoveis'), orderBy('dataISO', 'desc')), snap => {
+      imoveis = snap.docs.map(d => d.data());
+      setSynced(); renderAll();
+    }, onSyncError);
+    migrateLocalToFirestore();
   } catch (e) { onSyncError(e); }
 }
 window.startFirestoreSync = startFirestoreSync;
@@ -2313,10 +2856,12 @@ function updateBadges() {
   document.getElementById('badge-followups').textContent = pending;
   document.getElementById('badge-compradores').textContent = activeBuyers;
   document.getElementById('badge-interm').textContent = semParceiro;
+  document.getElementById('badge-imoveis').textContent = imoveis.length;
 
   setBadge(['bn-badge-contactos'], totalContactos);
   setBadge(['bn-badge-followups'], pending);
   setBadge(['bn-badge-compradores'], activeBuyers);
+  setBadge(['bn-badge-imoveis'], imoveis.length);
   setBadge(['bn-badge-interm'], semParceiro);
 }
 
